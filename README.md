@@ -25,7 +25,7 @@ manager for Cocoa applications.
 
 3. In the Cartfile for your project, add:
   ```
-  github "bitwiseio/sawtooth-sdk-swift" "master"
+  github "hyperledger/sawtooth-sdk-swift" "master"
   ```
 
 4. Run `carthage update`
