@@ -18,7 +18,9 @@
 
 import Foundation
 
+/// Public key implementation using the secp256k1 algorithm.
 public class Secp256k1PublicKey: PublicKey {
+    /// The algorithm name associated with this public key.
     public static var algorithmName = "secp256k1"
     let pubKey: [UInt8]
 
@@ -26,14 +28,29 @@ public class Secp256k1PublicKey: PublicKey {
         self.pubKey = pubKey
     }
 
+    /**
+        Return a PublicKey object from a hex encoded secp256k1 public key.
+
+        - Returns: Secp256k1PublicKey object.
+    */
     public static func fromHex(hexPubKey: String) -> Secp256k1PublicKey {
         return Secp256k1PublicKey(pubKey: hexPubKey.toBytes)
     }
 
+    /**
+        Return the public key, hex encoded.
+
+        - Returns: Hex encoded private key.
+    */
     public func hex() -> String {
         return Data(self.pubKey).toHex()
     }
 
+    /**
+        Return the bytes underlying the public key.
+
+        - Returns: Bytes underlying the public key.
+    */
     public func getBytes() -> [UInt8] {
         return self.pubKey
     }

@@ -16,11 +16,16 @@
 //  limitations under the License.
 //
 
+/// Factory for generating signers.
 public class CryptoFactory {
-    /// Private constructor for Factory class.
     init() {}
 
-    static func createContext(algorithmName: String) -> Context {
+    /**
+        Create a Context object based on the given algorithm name.
+
+        - Returns: Context for a given algorithm.
+    */
+    public static func createContext(algorithmName: String) -> Context {
         if algorithmName == "secp256k1" {
             return Secp256k1Context()
         }

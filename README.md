@@ -42,7 +42,7 @@ Frameworks and Libraries sections in your Xcode project.
 - Sign transactions
 - Verify signatures
 
-  ###### Example
+##### Example
 
   ```
   import SawtoothSigning

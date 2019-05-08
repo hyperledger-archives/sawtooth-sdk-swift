@@ -18,21 +18,20 @@
 
 /// Private key protocol for any asymmetric key algorithm.
 public protocol PrivateKey {
-    /// The algorithm name associated with the PrivateKey.
+    /// The algorithm name associated with this private key.
     static var algorithmName: String { get }
 
     /**
-        Return the PrivateKey, hex encoded.
+        Return the private key, hex encoded.
 
-        - Returns: Hex encoded private key
+        - Returns: Hex encoded private key.
      */
     func hex() -> String
 
     /**
-        Return the bytes underlying the PrivateKey.
-     
+        Return the bytes underlying the private key.
+
         - Returns: Bytes underlying the private key.
     */
     func getBytes() -> [UInt8]
-
 }

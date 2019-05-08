@@ -16,20 +16,22 @@
 //  limitations under the License.
 //
 
+/// Public key protocol for any asymmetric key algorithm.
 public protocol PublicKey {
+    /// The algorithm name associated with this public key.
     static var algorithmName: String { get }
 
     /**
-     Return the PublicKey, hex encoded.
-     
-     - Returns: Hex encoded private key
-     */
+        Return the public key, hex encoded.
+
+        - Returns: Hex encoded public key.
+    */
     func hex() -> String
 
     /**
-     Return the bytes underlying the PublicKey.
-     
-     - Returns: Bytes underlying the private key.
-     */
+        Return the bytes underlying the public key.
+
+        - Returns: Bytes underlying the public key.
+    */
     func getBytes() -> [UInt8]
 }

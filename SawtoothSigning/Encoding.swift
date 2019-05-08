@@ -20,7 +20,7 @@ import Foundation
 import CommonCrypto
 
 extension Data {
-    public func toHex() -> String {
+    internal func toHex() -> String {
         return map { String(format: "%02x", UInt8($0)) }.joined()
     }
 }
@@ -40,7 +40,7 @@ extension StringProtocol {
     }
 }
 
-public func hash(data: [UInt8]) -> Data {
+internal func hash(data: [UInt8]) -> Data {
     var digest = Data(count: Int(CC_SHA256_DIGEST_LENGTH))
 
     _ = digest.withUnsafeMutableBytes { (digestBytes) in
