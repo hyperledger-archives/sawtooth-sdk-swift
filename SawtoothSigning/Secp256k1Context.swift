@@ -16,6 +16,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import secp256k1
 import Security
 

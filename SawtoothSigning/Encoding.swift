@@ -15,6 +15,10 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
+
+import Foundation
+import CommonCrypto
+
 extension Data {
     public func toHex() -> String {
         return map { String(format: "%02x", UInt8($0)) }.joined()

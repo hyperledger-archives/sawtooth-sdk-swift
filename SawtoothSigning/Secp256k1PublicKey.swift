@@ -16,6 +16,8 @@
 //  limitations under the License.
 //
 
+import Foundation
+
 public class Secp256k1PublicKey: PublicKey {
     public static var algorithmName = "secp256k1"
     let pubKey: [UInt8]
