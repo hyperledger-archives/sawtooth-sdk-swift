@@ -36,6 +36,9 @@ public class Secp256k1Context: Context {
             - privateKey: Private key of the signer.
 
         - Returns: Hex encoded secp256k1 signature.
+
+        - Throws: `SigningError`
+                  if any error occurs during the signing process.
     */
     public func sign(data: [UInt8], privateKey: PrivateKey) throws -> String {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))
@@ -79,6 +82,9 @@ public class Secp256k1Context: Context {
             - publicKey: The public key claimed to be associated with the signature.
 
         - Returns: Whether the signer is verified.
+
+        - Throws: `SigningError`
+                  if any error occurs during verification.
     */
     public func verify(signature: String, data: [UInt8], publicKey: PublicKey) throws-> Bool {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY))
@@ -93,7 +99,7 @@ public class Secp256k1Context: Context {
         let resultParsePublicKey = secp256k1_ec_pubkey_parse(ctx!, &pubKey, publicKey.getBytes(),
                                                              publicKey.getBytes().count)
         if resultParsePublicKey == 0 {
-             throw SigningError.invalidPublicKey
+            throw SigningError.invalidPublicKey
         }
 
         let msgDigest = hash(data: data)
@@ -117,6 +123,9 @@ public class Secp256k1Context: Context {
             - privateKey: Private key associated with the requested public key.
 
         - Returns: Public key associated with the given private key.
+
+        - Throws: `SigningError`
+                  if the private key is not valid.
     */
     public func getPublicKey(privateKey: PrivateKey) throws -> PublicKey {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))
