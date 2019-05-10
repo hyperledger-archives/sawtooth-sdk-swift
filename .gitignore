@@ -1,9 +1,11 @@
 # Sawtooth SDK iOS
 
 ## Build generated
+.build/
 docs/_build
 build/
 DerivedData/
+Package.resolved
 
 # Xcode
 

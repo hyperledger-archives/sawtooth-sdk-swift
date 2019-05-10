@@ -24,7 +24,7 @@ public protocol Context {
 
     /**
         Create a signature by signing the bytes.
-     
+
         - Parameters:
             - data: The bytes being signed.
             - privateKey: Private key of the signer.
@@ -36,30 +36,30 @@ public protocol Context {
     /**
         Verify that the private key associated with the public key
         produced the signature by signing the bytes.
-     
+
         - Parameters:
             - signature: The signature being verified.
             - data: The signed data.
             - publicKey: The public key claimed to be associated with the signature.
-     
+
         - Returns: Whether the signer is verified.
     */
     func verify(signature: String, data: [UInt8], publicKey: PublicKey) throws -> Bool
 
     /**
         Get the public key associated with the private key.
-    
+
         - Parameters:
             - privateKey: Private key associated with the requested public key.
-    
+
         - Returns: Public key associated with the given private key.
-     */
+    */
     func getPublicKey(privateKey: PrivateKey) throws -> PublicKey
 
     /**
         Generate a random private key.
-     
+
         - Returns: New private key.
-     */
+    */
     func newRandomPrivateKey() -> PrivateKey
 }

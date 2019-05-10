@@ -15,10 +15,17 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
+
 import Foundation
 
-enum SigningError: Error {
+/// Thrown when an error occurs during the signing process.
+public enum SigningError: Error {
+    /// An invalid private key
     case invalidPrivateKey
+
+    /// An invalid public key
     case invalidPublicKey
+
+    /// An invalid signature
     case invalidSignature
 }

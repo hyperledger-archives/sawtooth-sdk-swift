@@ -16,11 +16,20 @@
 //  limitations under the License.
 //
 
-/// Convenience class that wraps the PrivateKey and Context
+/// Convenience class that wraps the PrivateKey and Context.
 public class Signer {
     var context: Context
     var privateKey: PrivateKey
 
+    /**
+        Constructs a new signer.
+
+         - Parameters:
+            - context: A signing context.
+            - privateKey: A private key based on the given context.
+
+         - Returns: Signer that wraps the given context and private key.
+    */
     public init(context: Context, privateKey: PrivateKey) {
         self.context = context
         self.privateKey = privateKey

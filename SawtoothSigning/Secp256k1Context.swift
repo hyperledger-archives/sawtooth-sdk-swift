@@ -16,15 +16,30 @@
 //  limitations under the License.
 //
 
+import Foundation
 import secp256k1
 import Security
 
 /// A Context for signing and verifying secp256k1 signatures.
 public class Secp256k1Context: Context {
+    /// Constructor for a secp256k1 context.
     public init() {}
 
+    /// The algorithm name associated with this context.
     public static var algorithmName = "secp256k1"
 
+    /**
+        Create a secp256k1 signature by signing the bytes.
+
+        - Parameters:
+            - data: The bytes being signed.
+            - privateKey: Private key of the signer.
+
+        - Returns: Hex encoded secp256k1 signature.
+
+        - Throws: `SigningError`
+                  if any error occurs during the signing process.
+    */
     public func sign(data: [UInt8], privateKey: PrivateKey) throws -> String {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))
         var sig = secp256k1_ecdsa_signature()
@@ -57,6 +72,20 @@ public class Secp256k1Context: Context {
         return Data(csigArray).toHex()
     }
 
+    /**
+        Verify that the private key associated with the public key
+        produced the signature by signing the bytes.
+
+        - Parameters:
+            - signature: The signature being verified.
+            - data: The signed data.
+            - publicKey: The public key claimed to be associated with the signature.
+
+        - Returns: Whether the signer is verified.
+
+        - Throws: `SigningError`
+                  if any error occurs during verification.
+    */
     public func verify(signature: String, data: [UInt8], publicKey: PublicKey) throws-> Bool {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY))
 
@@ -70,7 +99,7 @@ public class Secp256k1Context: Context {
         let resultParsePublicKey = secp256k1_ec_pubkey_parse(ctx!, &pubKey, publicKey.getBytes(),
                                                              publicKey.getBytes().count)
         if resultParsePublicKey == 0 {
-             throw SigningError.invalidPublicKey
+            throw SigningError.invalidPublicKey
         }
 
         let msgDigest = hash(data: data)
@@ -87,6 +116,17 @@ public class Secp256k1Context: Context {
         }
     }
 
+    /**
+        Get the public key associated with a given private key.
+
+        - Parameters:
+            - privateKey: Private key associated with the requested public key.
+
+        - Returns: Public key associated with the given private key.
+
+        - Throws: `SigningError`
+                  if the private key is not valid.
+    */
     public func getPublicKey(privateKey: PrivateKey) throws -> PublicKey {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))
         var pubKey = secp256k1_pubkey()
@@ -105,6 +145,11 @@ public class Secp256k1Context: Context {
         return Secp256k1PublicKey(pubKey: pubKeyBytes)
     }
 
+    /**
+        Generate a random secp256k1 private key.
+
+        - Returns: New secp256k1 private key.
+    */
     public func newRandomPrivateKey() -> PrivateKey {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))
         let bytesCount = 32
