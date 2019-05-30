@@ -12,15 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# docker build . -f docs/Dockerfile -t sawtooth-sdk-swift-docs
+# docker build . -f ci/build-docs -t sawtooth-sdk-swift-docs
 # docker run --rm -v $(pwd):/project/sawtooth-sdk-swift sawtooth-sdk-swift-docs
 
 FROM swift:4.2
 
 RUN apt-get update \
  && apt-get install -y \
- ruby-full \
- libsqlite3-dev
+    libsqlite3-dev \
+    python3-pip \
+    ruby-full \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && pip3 install \
+    sphinx \
+    sphinxcontrib-httpdomain \
+    sphinxcontrib-openapi \
+    sphinx_rtd_theme
 
 RUN git clone https://github.com/jpsim/SourceKitten.git \
  && cd SourceKitten \
@@ -29,12 +37,16 @@ RUN git clone https://github.com/jpsim/SourceKitten.git \
 
 RUN gem install jazzy
 
-WORKDIR /project/sawtooth-sdk-swift/
+WORKDIR /project/sawtooth-sdk-swift/docs
 
+
+CMD mkdir -p _build \
+ && sphinx-build -b html source _build \
+ && cd .. \
 # `swift build` must be run in order for sourcekitten to parse the code.
 # However, the build is expected to fail due to some frameworks being
 # unavailable on Linux.
-CMD swift build >/dev/null 2>&1; \
+ && swift build >/dev/null 2>&1; \
  sourcekitten doc --spm-module SawtoothSigning > tmp.json \
- && jazzy --clean  --sourcekitten-sourcefile tmp.json -o docs/jazzy/build \
+ && jazzy --clean --sourcekitten-sourcefile tmp.json -o docs/_build/jazzy_docs \
  && rm tmp.json
