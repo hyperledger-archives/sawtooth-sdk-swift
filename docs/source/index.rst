@@ -6,3 +6,4 @@ Table of Contents
 
    overview.rst
    using_ios_sdk.rst
+   sdk_api_ref.rst
