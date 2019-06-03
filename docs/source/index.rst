@@ -5,5 +5,5 @@ Table of Contents
    :maxdepth: 2
 
    overview.rst
-   using_ios_sdk.rst
+   using_swift_sdk.rst
    sdk_api_ref.rst

@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'Sawtooth-sdk-ios'
+project = u'Sawtooth SDK Swift'
 copyright = u'2019, Bitwise IO, Inc.'
 author = u'Bitwise IO, Inc.'
 
@@ -117,7 +117,7 @@ html_show_sphinx = False
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Sawtooth-sdk-iosdoc'
+htmlhelp_basename = 'sawtooth-sdk-swiftdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -144,7 +144,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Sawtooth-sdk-ios.tex', u'Sawtooth-sdk-ios Documentation',
+    (master_doc, 'sawtooth-sdk-swift.tex', u'sawtooth-sdk-swift Documentation',
      u'Bitwise IO, Inc.', 'manual'),
 ]
 
@@ -154,7 +154,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'sawtooth-sdk-ios', u'Sawtooth-sdk-ios Documentation',
+    (master_doc, 'sawtooth-sdk-swift', u'sawtooth-sdk-swift Documentation',
      [author], 1)
 ]
 
@@ -165,8 +165,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Sawtooth-sdk-ios', u'Sawtooth-sdk-ios Documentation',
-     author, 'Sawtooth-sdk-ios', 'One line description of project.',
+    (master_doc, 'sawtooth-sdk-swift', u'sawtooth-sdk-swift Documentation',
+     author, 'sawtooth-sdk-swift', 'One line description of project.',
      'Miscellaneous'),
 ]
 
