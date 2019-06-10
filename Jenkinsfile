@@ -101,7 +101,7 @@ pipeline {
 
      post {
         success {
-            archiveArtifacts '*.tgz, *.zip, docs/_build/**'
+            archiveArtifacts '*.tgz, *.zip, docs/build/**'
         }
         aborted {
             error "Aborted, exiting now"
