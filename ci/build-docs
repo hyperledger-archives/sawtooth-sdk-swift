@@ -40,13 +40,13 @@ RUN gem install jazzy
 WORKDIR /project/sawtooth-sdk-swift/docs
 
 
-CMD mkdir -p _build \
- && sphinx-build -b html source _build \
+CMD mkdir -p build/html \
+ && sphinx-build -b html source build/html \
  && cd .. \
 # `swift build` must be run in order for sourcekitten to parse the code.
 # However, the build is expected to fail due to some frameworks being
 # unavailable on Linux.
  && swift build >/dev/null 2>&1; \
  sourcekitten doc --spm-module SawtoothSigning > tmp.json \
- && jazzy --clean --sourcekitten-sourcefile tmp.json -o docs/_build/jazzy_docs \
+ && jazzy --clean --sourcekitten-sourcefile tmp.json -o docs/build/html/jazzy_docs \
  && rm tmp.json
