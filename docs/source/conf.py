@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'Sawtooth SDK Swift'
+project = u'Sawtooth Swift SDK'
 copyright = u'2019, Bitwise IO, Inc.'
 author = u'Bitwise IO, Inc.'
 
@@ -144,7 +144,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'sawtooth-sdk-swift.tex', u'sawtooth-sdk-swift Documentation',
+    (master_doc, 'sawtooth-sdk-swift.tex', u'Sawtooth Swift SDK Documentation',
      u'Bitwise IO, Inc.', 'manual'),
 ]
 
@@ -154,7 +154,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'sawtooth-sdk-swift', u'sawtooth-sdk-swift Documentation',
+    (master_doc, 'sawtooth-sdk-swift', u'Sawtooth Swift SDK Documentation',
      [author], 1)
 ]
 
@@ -165,8 +165,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'sawtooth-sdk-swift', u'sawtooth-sdk-swift Documentation',
-     author, 'sawtooth-sdk-swift', 'One line description of project.',
+    (master_doc, 'sawtooth-sdk-swift', u'Sawtooth Swift SDK Documentation',
+     author, 'sawtooth-sdk-swift', 'Learn how to write a Sawtooth client with the Swift SDK.',
      'Miscellaneous'),
 ]
 

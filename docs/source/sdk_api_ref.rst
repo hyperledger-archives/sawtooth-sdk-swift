@@ -1,5 +1,5 @@
-SDK API Reference
-=================
+Swift SDK API Reference
+=======================
 
 
 .. toctree::
