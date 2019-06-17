@@ -1,11 +1,11 @@
 Overview
 ========
 
-This tutorial shows how to use the Sawtooth iOS SDK to develop a
-client. The client is responsible for creating and signing transactions, combining
-those transactions into batches, and submitting them to the validator. The
-client can post batches through the REST API or connect directly to the
-validator via `ZeroMQ <http://zeromq.org>`_.
+This tutorial shows how to use the Sawtooth Swift SDK to develop a
+client application. The client is responsible for creating and signing
+transactions, combining those transactions into batches, and submitting them to
+the validator. The client can post batches through the REST API or connect
+directly to the validator via `ZeroMQ <http://zeromq.org>`_.
 
 .. note::
 
