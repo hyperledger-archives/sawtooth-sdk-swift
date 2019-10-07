@@ -1,0 +1,51 @@
+language: swift
+osx_image: xcode11
+jobs:
+  include:
+  - stage: Daily Build
+    if: type = cron
+    script:
+        - pip3 install sphinx sphinxcontrib-httpdomain sphinxcontrib-openapi sphinx_rtd_theme
+        - HOMEBREW_NO_INSTALL_CLEANUP=TRUE; brew install sourcekitten
+        - gem install jazzy
+        - mkdir -p docs/build/html docs/build/tar
+        - cd docs && sphinx-build -b html source build/html && cd ..
+        - swift build
+        - sourcekitten doc --spm-module SawtoothSigning > tmp.json
+        - jazzy --clean --sourcekitten-sourcefile tmp.json -o docs/build/html/jazzy_docs
+        - rm tmp.json
+        - tar -cpvzf docs/build/tar/sawtooth-sdk-swift-docs-nightly-$(TZ=America/Chicago date +%F).tar.gz docs/build/html
+    deploy:
+        - provider: s3
+          name: sawtooth-sdk-swift daily build
+          body: "$(TZ=America/Chicago date) $TRAVIS_COMMIT"
+          access_key_id: "$ACCESS_KEY_ID"
+          secret_access_key: "$SECRET_ACCESS_KEY"
+          bucket: "sawtooth-sdk-swift-artifacts"
+          local_dir: docs/build/tar
+          skip_cleanup: true
+          acl: public_read
+
+  - stage: Release Build
+    if: tag IS present
+    script:
+        - pip3 install sphinx sphinxcontrib-httpdomain sphinxcontrib-openapi sphinx_rtd_theme
+        - HOMEBREW_NO_INSTALL_CLEANUP=TRUE; brew install sourcekitten
+        - gem install jazzy
+        - mkdir -p docs/build/html docs/build/tar
+        - cd docs && sphinx-build -b html source build/html && cd ..
+        - swift build
+        - sourcekitten doc --spm-module SawtoothSigning > tmp.json
+        - jazzy --clean --sourcekitten-sourcefile tmp.json -o docs/build/html/jazzy_docs
+        - rm tmp.json
+        - tar -cpvzf docs/build/tar/sawtooth-sdk-swift-docs-$TRAVIS_TAG.tar.gz docs/build/html
+    deploy:
+        - provider: s3
+          name: sawtooth-sdk-swift release build
+          body: "$(TZ=America/Chicago date) $TRAVIS_COMMIT"
+          access_key_id: "$ACCESS_KEY_ID"
+          secret_access_key: "$SECRET_ACCESS_KEY"
+          bucket: "sawtooth-sdk-swift-artifacts"
+          local_dir: docs/build/tar
+          skip_cleanup: true
+          acl: public_read
