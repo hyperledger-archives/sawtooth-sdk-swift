@@ -1,10 +1,10 @@
-| Name | GitHub | RocketChat |
-| --- | --- | --- |
-| Andi Gunderson | agunde406 | agunde |
-| Dan Middleton | dcmiddle | Dan |
-| Darian Plumb | dplumb94 | dplumb |
-| Eloá França Verona | eloaverona | eloafran |
-| James Mitchell | jsmitchell | jsmitchell |
-| Peter Schwarz | peterschwarz | pschwarz |
-| Shannyn Telander | shannynalayna | satelander |
-| Shawn Amundson | vaporos | amundson |
+| Name | GitHub |
+| --- | --- |
+| Andi Gunderson | agunde406 |
+| Dan Middleton | dcmiddle |
+| Darian Plumb | dplumb94 |
+| Eloá França Verona | eloaverona |
+| James Mitchell | jsmitchell |
+| Peter Schwarz | peterschwarz |
+| Shannyn Telander | shannynalayna |
+| Shawn Amundson | vaporos |
